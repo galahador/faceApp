@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPrintView" customModule="FaceApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XP-QS-LwG">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THy-GB-sHV">
+                            <rect key="frame" x="8" y="8" width="377" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="THy-GB-sHV" firstAttribute="leading" secondItem="7XP-QS-LwG" secondAttribute="leading" constant="8" id="MO0-3B-Zr4"/>
+                        <constraint firstAttribute="trailing" secondItem="THy-GB-sHV" secondAttribute="trailing" constant="8" id="Nqd-yP-dXR"/>
+                        <constraint firstItem="THy-GB-sHV" firstAttribute="top" secondItem="7XP-QS-LwG" secondAttribute="top" constant="8" id="eql-cD-rPS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7XP-QS-LwG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CUC-Ka-otz"/>
+                <constraint firstItem="7XP-QS-LwG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="SX4-DQ-Qat"/>
+                <constraint firstItem="7XP-QS-LwG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="puu-Dd-bXf"/>
+                <constraint firstItem="7XP-QS-LwG" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="z65-Fv-Gnd"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="7XP-QS-LwG"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="49.618320610687022" y="19.718309859154932"/>
+        </view>
+    </objects>
+</document>
