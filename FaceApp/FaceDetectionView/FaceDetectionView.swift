@@ -23,6 +23,8 @@ class FaceDetectionView: UIView {
     private var captureSession = AVCaptureSession()
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var faceDetectionRequest: VNRequest!
+    private var faceBoundingBoxLayers: [CAShapeLayer] = []
+
     
     weak var delegate: FaceDetectionViewDelegagte?
 
@@ -120,6 +122,7 @@ class FaceDetectionView: UIView {
         faceBoundingBoxLayer.lineWidth = 2
         faceBoundingBoxLayer.fillColor = UIColor.clear.cgColor
         faceBoundingBoxLayer.isHidden = true
+        faceBoundingBoxLayer.zPosition = 1
         self.layer.addSublayer(faceBoundingBoxLayer)
     }
 
@@ -130,22 +133,54 @@ class FaceDetectionView: UIView {
             return
         }
 
+        // Remove any existing bounding box layers
+        DispatchQueue.main.async { [weak self] in
+            self?.clearBoundingBoxes()
+        }
+
         // Check if we have face observations
         guard let observations = request.results as? [VNFaceObservation], !observations.isEmpty else {
             self.delegate?.noFaceDetectedText(text: "No face detected.")
             print("No face detected.")
-            self.faceBoundingBoxLayer.isHidden = true
             return
         }
 
         print("Detected \(observations.count) face(s).")
         self.delegate?.faceDetectedText(text: "Detected \(observations.count) face(s).")
-    
-        if let face = observations.first {
-            DispatchQueue.main.async { [weak self] in
-                self?.updateBoundingBox(for: face)
+
+        // Create bounding boxes for each detected face
+        DispatchQueue.main.async { [weak self] in
+            observations.forEach { face in
+                self?.createBoundingBox(for: face)
             }
         }
+    }
+    
+    private func createBoundingBox(for face: VNFaceObservation) {
+        // Convert the bounding box to UIKit coordinates
+        let convertedRect = transformBoundingBox(face.boundingBox)
+
+        // Create a new shape layer for the bounding box
+        let boundingBoxLayer = CAShapeLayer()
+        boundingBoxLayer.strokeColor = UIColor.red.cgColor
+        boundingBoxLayer.lineWidth = 2
+        boundingBoxLayer.fillColor = UIColor.clear.cgColor // Transparent fill
+        boundingBoxLayer.frame = convertedRect
+        boundingBoxLayer.zPosition = 1
+
+        // Draw the bounding box
+        let path = UIBezierPath(rect: boundingBoxLayer.bounds)
+        boundingBoxLayer.path = path.cgPath
+
+        // Add the new bounding box layer to the view and keep track of it
+        self.layer.addSublayer(boundingBoxLayer)
+        self.faceBoundingBoxLayers.append(boundingBoxLayer)
+    }
+
+    // Clear all existing bounding box layers
+    private func clearBoundingBoxes() {
+        faceBoundingBoxLayers.forEach { $0.removeFromSuperlayer() }
+        faceBoundingBoxLayers.removeAll()
     }
 
     // Update the bounding box based on the detected face
@@ -157,7 +192,14 @@ class FaceDetectionView: UIView {
 
         // Update the face bounding box layer on the main thread
         DispatchQueue.main.async {
-            self.faceBoundingBoxLayer.frame = convertedRect
+            // Remove any previous path
+            self.faceBoundingBoxLayer.path = nil
+
+            // Create a new path for the updated bounding box
+            let path = UIBezierPath(rect: convertedRect)
+            self.faceBoundingBoxLayer.path = path.cgPath
+
+            // Show the bounding box
             self.faceBoundingBoxLayer.isHidden = false
         }
     }
