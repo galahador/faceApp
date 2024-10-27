@@ -11,9 +11,11 @@ import Vision
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var consoleView: CustomPrintView!
-    @IBOutlet weak var faceDetectionView: FaceDetectionView!
+    // MARK: - Private IBOutlet
+    @IBOutlet private weak var consoleView: CustomPrintView!
+    @IBOutlet private weak var faceDetectionView: FaceDetectionView!
     
+    // MARK: - Initialization
     override func viewDidLoad() {
          super.viewDidLoad()
         setupUI()

@@ -19,7 +19,6 @@ protocol FaceDetectionViewDelegagte: AnyObject {
 
 class FaceDetectionView: UIView {
     
-    
     // MARK: - Private Properties
     private var captureSession = AVCaptureSession()
     private var previewLayer: AVCaptureVideoPreviewLayer!
