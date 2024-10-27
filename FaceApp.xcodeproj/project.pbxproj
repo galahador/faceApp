@@ -58,6 +58,11 @@
 			path = FaceAppUITests;
 			sourceTree = "<group>";
 		};
+		60F4A2CA2CCEBE1C00FF1F26 /* Utils */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				60E12CE42CCD7845002820C8 /* FaceApp */,
+				60F4A2CA2CCEBE1C00FF1F26 /* Utils */,
 				60E12CFB2CCD7847002820C8 /* FaceAppTests */,
 				60E12D052CCD7847002820C8 /* FaceAppUITests */,
 				60E12CE32CCD7845002820C8 /* Products */,
@@ -122,6 +128,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				60E12CE42CCD7845002820C8 /* FaceApp */,
+				60F4A2CA2CCEBE1C00FF1F26 /* Utils */,
 			);
 			name = FaceApp;
 			packageProductDependencies = (

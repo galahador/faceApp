@@ -109,7 +109,7 @@ class FaceDetectionView: UIView {
     // MARK: - Bounding Box Setup
     private func setupBoundingBox() {
         faceBoundingBoxLayer.strokeColor = UIColor.red.cgColor
-        faceBoundingBoxLayer.lineWidth = 2
+        faceBoundingBoxLayer.lineWidth = 4
         faceBoundingBoxLayer.fillColor = UIColor.clear.cgColor
         faceBoundingBoxLayer.isHidden = true
         faceBoundingBoxLayer.zPosition = 1
