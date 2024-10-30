@@ -7,7 +7,12 @@
 
 import UIKit
 
-class CustomPrintView: ViewWithNib {
+protocol CustomPrintViewAbstract: AnyObject {
+    func log(_ message: String)
+    func clearLog()
+}
+
+class CustomPrintView: ViewWithNib, CustomPrintViewAbstract {
      private var scrollView: UIScrollView!
      private var stackView: UIStackView!
      private let maxAllowedLabels = 25

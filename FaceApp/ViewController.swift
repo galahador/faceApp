@@ -17,16 +17,17 @@ class ViewController: UIViewController {
     
     // MARK: - Initialization
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
         setupUI()
-     }
+    }
     
     private func setupUI() {
         faceDetectionView.delegate = self
     }
 }
 
-extension ViewController: FaceDetectionViewDelegagte {
+// MARK: - Face Detection Delegate
+extension ViewController: FaceDetectionViewDelegate {
     func noFaceDetectedText(text: String) {
         DispatchQueue.main.async { [weak self] in
             self?.consoleView.log(text)

@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import Vision
 
-protocol FaceDetectionViewDelegagte: AnyObject {
+protocol FaceDetectionViewDelegate: AnyObject {
     func noFaceDetectedText(text: String)
     func faceDetectedText(text: String)
     
@@ -26,7 +26,7 @@ class FaceDetectionView: UIView {
     private var faceBoundingBoxLayers: [CAShapeLayer] = []
     private var faceBoundingBoxLayer = CAShapeLayer()
     
-    weak var delegate: FaceDetectionViewDelegagte?
+    weak var delegate: FaceDetectionViewDelegate?
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -62,13 +62,15 @@ class FaceDetectionView: UIView {
     }
     
     //MARK: -  Function to handle triple tap (start)
-    @objc func handleDoubleTap() {
+    @objc
+    private func handleDoubleTap() {
         self.delegate?.actionStart()
         captureSession.startRunning()
     }
     
     //MARK: -  Function to handle triple tap (stop)
-    @objc func handleTripleTap() {
+    @objc
+    private func handleTripleTap() {
         self.delegate?.actionEnd()
         captureSession.stopRunning()
     }
